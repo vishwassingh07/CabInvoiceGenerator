@@ -9,11 +9,12 @@ namespace CabInvoiceGenerator
     public class InvoiceGenerator
     {
         public RideType rideType;
-        //Constants
+        // Constants
         public readonly double MINIMUM_COST_PER_KM;
         public readonly int COST_PER_MIN;
         public readonly double MINIMUM_FARE;
 
+       // Checking for normal ride or premium ride
        public InvoiceGenerator(RideType rideType)
         {
             this.rideType = rideType;
@@ -30,8 +31,10 @@ namespace CabInvoiceGenerator
                 MINIMUM_FARE = 20;
             }
         }
+        // Calculate cab fare
         public double CalculateTotalFare(double distance, int time)
         {
+            // Checking for exception
             try
             {
                 if (distance <= 0)
@@ -53,6 +56,17 @@ namespace CabInvoiceGenerator
                 Console.WriteLine(ex.Message);
                 return 0;
             }
+        }
+        // Calculate total cab fare for multiple rides
+        public double CalculateTotalFare(Ride[] rides)
+        {
+            double totalFare = 0;
+            foreach(Ride ride in rides)
+            {
+               totalFare += CalculateTotalFare(ride.distance, ride.time);
+            }
+            Math.Max(totalFare, MINIMUM_FARE);
+            return totalFare;
         }
     }
 }

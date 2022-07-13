@@ -29,5 +29,25 @@ namespace CabInvoiceTestCases
             Assert.AreEqual(expectedFare, actualFare);
         }
 
+        // Test Case 2 : For Multiple Rides
+        [Test]
+        public void GivenMultipleRidesReturnTotalFare()
+        {
+            //Arrange
+            double expectedTotalFare = 97;
+            Ride[] rides = new Ride[]
+            {
+                new Ride(2, 5), //40
+                new Ride(3, 6) //57
+            };
+            InvoiceGenerator invoiceGenerator = new InvoiceGenerator(RideType.PREMIUM);
+
+            //Arrange
+            double actualTotalFare = invoiceGenerator.CalculateTotalFare(rides);
+
+            //Act
+            Assert.AreEqual(expectedTotalFare, actualTotalFare);
+        }
+
     }
 }
