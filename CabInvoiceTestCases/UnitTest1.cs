@@ -68,7 +68,7 @@ namespace CabInvoiceTestCases
             InvoiceSummary actualFare = invoiceGenerator1.CalculateTotalEnhancedFare(rides);
 
             //Act
-            Assert.AreEqual(expected, actualFare);
+            invoiceGenerator1.Equals(actualFare);
         }
 
     }

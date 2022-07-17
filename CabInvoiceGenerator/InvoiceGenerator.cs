@@ -9,6 +9,7 @@ namespace CabInvoiceGenerator
     public class InvoiceGenerator
     {
         public RideType rideType;
+        public RideRepository rideRepository;
         // Constants
         public readonly double MINIMUM_COST_PER_KM;
         public readonly int COST_PER_MIN;
